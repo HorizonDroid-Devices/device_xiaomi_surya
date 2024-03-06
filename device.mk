@@ -16,7 +16,8 @@ $(call inherit-product, vendor/xiaomi/surya/surya-vendor.mk)
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
-
+# Camera
+$(call inherit-product-if-exists, device/xiaomi/surya-miuicamera/config.mk)
 
 # Additional native libraries
 PRODUCT_COPY_FILES += \
@@ -107,9 +108,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libpiex_shim
 
-# Camera
-$(call inherit-product-if-exists, device/xiaomi/surya-miuicamera/config.mk)
-
 # Dex/ART optimization
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
@@ -148,10 +146,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey \
     android.hardware.drm@1.4.vendor
-
-#EverestOS overlay
-DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-everest \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
